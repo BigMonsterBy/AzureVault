@@ -1,0 +1,18 @@
+﻿@model LogonModel
+@{
+    ViewData["Title"] = "Logon";
+}
+
+@if(ViewData["AuthResult"] !=null){
+<h1>@ViewData["AuthResult"]</h1>
+}
+<h2>Logon</h2>
+@if(ViewData["Error"] !=null){
+<h1>@ViewData["Error"]</h1>
+}
+<form asp-controller="Account" asp-action="Logon"
+      method="post" class="form-horizontal" role="form">
+    UserName:  <input asp-for="UserName" value="@Model.UserName" /> <br />
+    Password: <input asp-for="Password" value="@Model.Password" type="password" /><br />
+    <button type="submit">Login</button>
+</form>
