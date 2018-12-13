@@ -1,22 +1,22 @@
 ﻿@model AuthModel
 @{
-    ViewData["Title"] = "Logon";
+    ViewData["Title"] = "Register";
 }
 
 @if (ViewData["AuthResult"] != null)
 {
     <h1>@ViewData["AuthResult"]</h1>
 }
-<h2>Logon</h2>
+<h2>Register</h2>
 @if (ViewData["Error"] != null)
 {
     <h1>@ViewData["Error"]</h1>
 }
-<form asp-controller="Account" asp-action="Logon"
+<form asp-controller="Account" asp-action="Register"
       method="post" class="form-horizontal" role="form">
     UserName:  <input asp-for="UserName" value="@Model.UserName" /> <br />
     Password: <input asp-for="Password" value="@Model.Password" type="password" /><br />
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
 </form>
 
 @Html.ActionLink("Back to home", "Index", "Home")

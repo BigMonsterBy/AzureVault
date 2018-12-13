@@ -21,19 +21,19 @@ namespace VaultFunction
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string userName = req.Query["userName"];
-            string password = req.Query["password"];
+            string userName = req.Query["UserName"];
+            string password = req.Query["Password"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            userName = userName ?? data?.userName;
-            password = password ?? data?.password;
+            userName = userName ?? data?.UserName;
+            password = password ?? data?.Password;
 
             try
             {
                 var azureServiceTokenProvider = new AzureServiceTokenProvider();
                 var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-                var secret = await keyVaultClient.SetSecretAsync($"https://lab-keyvault.vault.azure.net/secrets", userName, password).ConfigureAwait(false);
+                var secret = await keyVaultClient.SetSecretAsync($"https://lab-keyvault.vault.azure.net", userName, password).ConfigureAwait(false);
             }
             catch(Exception ex)
             {
