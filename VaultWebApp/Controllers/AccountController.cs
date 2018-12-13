@@ -55,7 +55,7 @@ namespace VaultWebApp.Controllers
         {
             try
             {
-                var functionUrl = "http://localhost:7071/api/Function1";// await GetValue("FunctionUrl");
+                var functionUrl = await GetValue("FunctionUrl");// "http://localhost:7071/api/Function1";// 
                 using(var httpClient = new HttpClient())
                 {
                     var result = await httpClient.PostAsJsonAsync<AuthModel>(new Uri(functionUrl), model);
